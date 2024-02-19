@@ -3,7 +3,7 @@ from PIL import Image
 from PIL import ImageFont
 
 
-image = Image.open("images/image1.png")
+image = Image.open("static/image1.png")
 
 draw = ImageDraw.Draw(image)
 

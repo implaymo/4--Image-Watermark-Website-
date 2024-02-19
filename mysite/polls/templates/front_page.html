@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Front Page</title>
+    <title>Random photo generator</title>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is the front page of my Django website.</p>
+    <h1>Random photo</h1>
+    <p>Whenever you refresh you will get a random image with watermark(SORRY i had to!)</p>
+    {% load static %}
+    <img src="{% static 'image1.png' %}" alt="My  image">
 </body>
 </html>
