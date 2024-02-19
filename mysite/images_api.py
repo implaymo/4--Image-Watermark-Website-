@@ -1,13 +1,15 @@
 import requests
-from random import choice
-response = requests.get("https://picsum.photos/v2/list")
-response.raise_for_status()
-
-data = response.json()
 
 
-all_images = [data[image]["url"] for image in range(0,30)]
+def get_random_image():
 
-random_image = choice(all_images)
+    response = requests.get("https://picsum.photos/1000")
+    response.raise_for_status()
 
-print(random_image)
+    image_content = response.content  
+
+    with open("static/image.jpg", "wb") as f:
+        f.write(image_content)
+
+    image_path = "static/image.jpg"
+    return image_path
