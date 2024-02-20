@@ -39,26 +39,22 @@ def sign_up(request):
 
 def login(request):
     if request.method == "POST":
-        login = Login()
+        login = Login(request.POST)
         if login.is_valid():
-            print("SUCCESS2")
             username = login.cleaned_data["username"]
             password = login.cleaned_data["password"]
             try:
                 user = Users.objects.get(username=username)
             except Users.DoesNotExist:
-                print("NOT FOUND1")
                 return render(request, 'login.html', {'error_message': 'Invalid username or password'})
             
             if check_password(password, user.password):
-                print("SUCCESS3")
-                return redirect(request, 'front_page')
+                return redirect('front_page')
             else:
-                print("NOT FOUND2")
                 return render(request, 'login.html', {'error_message': 'Invalid username or password'})
     return render(request, 'login.html', {'form': Login()})
 
 
-            
-            
+def logout(request):
+    pass
         

@@ -53,6 +53,9 @@
 <body>
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
+        {% if current.user.is_anonymous %}
+
+        {% endif}
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
