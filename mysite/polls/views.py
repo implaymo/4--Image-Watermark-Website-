@@ -21,7 +21,6 @@ def front_page(request):
     return render(request, 'front_page.html')
     
 def sign_up(request):
-
     if request.method == "POST":
         sign_up = SignUp(request.POST)
         username = sign_up.username
