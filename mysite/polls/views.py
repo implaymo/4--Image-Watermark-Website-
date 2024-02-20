@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from add_watermark import add_watermark_to_image
 from images_api import get_random_image
-from .all_forms import SignUp
-from django.contrib.auth.hashers import make_password
+from .all_forms import SignUp, Login
+from django.contrib.auth.hashers import make_password, check_password
 from .models import Users
 
 
@@ -36,4 +36,29 @@ def sign_up(request):
         
         return redirect(request, 'front_page')
     return render(request, 'sign_up.html', {'form': SignUp()})
+
+def login(request):
+    if request.method == "POST":
+        login = Login()
+        if login.is_valid():
+            print("SUCCESS2")
+            username = login.cleaned_data["username"]
+            password = login.cleaned_data["password"]
+            try:
+                user = Users.objects.get(username=username)
+            except Users.DoesNotExist:
+                print("NOT FOUND1")
+                return render(request, 'login.html', {'error_message': 'Invalid username or password'})
+            
+            if check_password(password, user.password):
+                print("SUCCESS3")
+                return redirect(request, 'front_page')
+            else:
+                print("NOT FOUND2")
+                return render(request, 'login.html', {'error_message': 'Invalid username or password'})
+    return render(request, 'login.html', {'form': Login()})
+
+
+            
+            
         
