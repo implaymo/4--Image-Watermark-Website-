@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from add_watermark import add_watermark_to_image
 from images_api import get_random_image
-from forms import Login, SignUp
+from .all_forms import SignUp
 from django.contrib.auth.hashers import make_password
-from models import Users
+from .models import Users
 
 
 def front_page(request):
@@ -21,13 +21,17 @@ def front_page(request):
     return render(request, 'front_page.html')
     
 def sign_up(request):
-    if request.methods == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+
+    if request.method == "POST":
+        sign_up = SignUp(request.POST)
+        username = sign_up.username
+        password = sign_up.password
         
         hashed_password = make_password(password)
         
         user = Users(username=username, password=hashed_password)
         user.save()
         
+        return redirect(request, 'front_page')
+    return render(request, 'sign_up.html')
         
