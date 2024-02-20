@@ -23,14 +23,17 @@ def front_page(request):
 def sign_up(request):
     if request.method == "POST":
         sign_up = SignUp(request.POST)
-        username = sign_up.username
-        password = sign_up.password
-        
-        hashed_password = make_password(password)
-        
-        user = Users(username=username, password=hashed_password)
-        user.save()
+        if sign_up.is_valid():
+            username = sign_up.cleaned_data["username"]
+            password = sign_up.cleaned_data["password"]
+
+            hashed_password = make_password(password)
+
+            user = Users(username=username, password=hashed_password)
+            user.save()
+
+            return redirect('front_page')
         
         return redirect(request, 'front_page')
-    return render(request, 'sign_up.html')
+    return render(request, 'sign_up.html', {'form': SignUp()})
         
