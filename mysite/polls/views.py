@@ -10,7 +10,7 @@ def front_page(request):
     text = "Playmoprojects"
     font_path = "fonts/ArianaVioleta-dz2K.ttf"
     font_size = 200
-    fill_color = (203, 201, 201)
+    fill_color = (169, 169, 169, 100)
 
     # Apply watermark
     add_watermark_to_image(image_path, output_path, text, font_path, font_size, fill_color)
