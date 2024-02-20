@@ -4,9 +4,14 @@
     <title>Random photo generator</title>
 </head>
 <body>
+    <div style="margin-top: 20px;">
+        <a href="{% url 'login' %}"><button>Login</button></a>
+        <a href="{% url 'sign_up' %}"><button>Sign In</button></a>
+    </div>
     <h1>Random Photo Generator</h1>
-    <p>Whenever you refresh you will get a random image with watermark(SORRY i had to!)</p>
+    <p>Whenever you refresh, you will get a random image with a watermark (SORRY, I had to!)</p>
     {% load static %}
     <img src="{% static 'image1_with_watermark.png' %}" alt="Watermarked Image">
+
 </body>
 </html>
