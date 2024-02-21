@@ -5,8 +5,12 @@
 </head>
 <body>
     <div style="margin-top: 20px;">
-        <a href="{% url 'login' %}"><button>Login</button></a>
-        <a href="{% url 'sign_up' %}"><button>Sign Up</button></a>
+        <a href=""><button>Login</button></a>
+        <a href="{% url 'register' %}"><button>Sign Up</button></a>
+        <a href=""><button>Logout</button></a>
+        {% if user.is_authenticated %}
+        <a href=""><button>Logout</button></a>
+        {% endif %}
     </div>
     <h1>Random Photo Generator</h1>
     <p>Whenever you refresh, you will get a random image with a watermark (SORRY, I had to!)</p>

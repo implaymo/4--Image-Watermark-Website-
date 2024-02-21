@@ -51,11 +51,12 @@
     </style>
 </head>
 <body>
-    <form action="{% url 'login' %}" method="post">
+    <form action="" method="post">
         {% csrf_token %}
-        {% if current.user.is_anonymous %}
-
-        {% endif}
+        {% if user.is_anonymous %}
+            {{ error_message }}
+        {% endif %}
+        <p></p>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
