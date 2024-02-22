@@ -32,7 +32,7 @@ def register(request):
     return render(request, "sign_up.html", {'form': form})
 
 
-def signin(request):
+def sign_in(request):
     pass
 
         
