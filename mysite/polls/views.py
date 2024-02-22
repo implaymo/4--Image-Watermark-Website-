@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from add_watermark import add_watermark_to_image
 from images_api import get_random_image
 from .all_forms import RegisterForm, SignInForm
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 
@@ -57,5 +56,10 @@ def sign_in(request):
         form = SignInForm()
             
     return render(request, 'sign_in.html', {'form': form, 'error_message': error_message})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect("front_page")
             
         
